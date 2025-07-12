@@ -1,9 +1,14 @@
-import React from 'react'
+import CompanionForm from "@/components/CompanionForm";
 
-const Companions = () => {
+const NewCompanion = () => {
   return (
-    <div>Companions</div>
+    <main>
+      <article>
+        <h1>Companion Builder</h1>
+        <CompanionForm />
+      </article>
+    </main>
   )
 }
 
-export default Companions
+export default NewCompanion
