@@ -6,6 +6,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const getSubjectColor = (subject: string) => {
-    return subjectsColors[subject];
+export const getSubjectColor = (subject: string) : string => {
+    return subjectsColors[subject as keyof typeof subjectsColors];
 }
