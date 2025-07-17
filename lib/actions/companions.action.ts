@@ -3,9 +3,9 @@ import {auth} from "@clerk/nextjs/server";
 import {createSupabaseClient} from "@/lib/supabase";
 
 export const createCompanion = async (formData: CreateCompanion) => {
-    const { userId: author } = await auth();
     const supabase = createSupabaseClient();
 
+    const { userId: author } = await auth();
     const { data, error } = await supabase.from('companions').insert({...formData, author: author }).select();
     if (error || !data)
         throw new Error(error ? error.message : 'Failed to create companion');
@@ -29,4 +29,42 @@ export const getAllCompanions = async ({limit = 10, page = 1, subject, topic} : 
     if (error || !data)
         throw new Error(error ? error.message : 'Failed to get companions');
     return data;
+}
+
+export const getCompanion = async (id: string) => {
+    const supabase = createSupabaseClient();
+
+    const { data, error } = await supabase.from('companions').select().eq('id', id);
+
+    if (error)
+        throw new Error(error.message);
+    return data[0];
+}
+
+export const addToSessionHistory = async (companionId: string) => {
+    const supabase = createSupabaseClient();
+
+    const { userId } = await auth();
+    const { data, error } = await supabase.from('session_history').insert({user_id: userId, companion_id: companionId});
+    if(error)
+        throw new Error(error.message);
+    return data;  
+}
+
+export const getRecentSessions = async (limit: number) => {
+    const supabase = createSupabaseClient();
+
+    const { data, error } = await supabase.from('session_history').select('companion_id, companions(*)').order('created_at', {ascending: false}).limit(limit);
+    if(error)
+        throw new Error(error.message);
+    return data.map(({companions}) => companions); 
+}
+
+export const getRecentUserSessions = async (userId: string, limit = 10) => {
+    const supabase = createSupabaseClient();
+
+    const { data, error } = await supabase.from('session_history').select('user_id, companion_id').eq('user_id', userId).order('created_at', {ascending: false}).limit(limit);
+    if(error)
+        throw new Error(error.message);
+    return data; 
 }

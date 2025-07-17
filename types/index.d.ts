@@ -58,6 +58,10 @@ interface SearchParams {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
+interface Params {
+  params: Promise<{ id: string }>;
+}
+
 interface Avatar {
   userName: string;
   width: number;

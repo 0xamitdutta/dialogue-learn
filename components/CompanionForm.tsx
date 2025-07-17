@@ -20,19 +20,19 @@ import {
 } from "@/components/ui/select"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
-import {subjects} from "@/constants";
-import {Textarea} from "@/components/ui/textarea";
-import {createCompanion} from "@/lib/actions/companions.action";
-import {redirect} from "next/navigation";
+import { subjects } from "@/constants";
+import { Textarea } from "@/components/ui/textarea";
+import { createCompanion } from "@/lib/actions/companions.action";
+import { redirect } from "next/navigation";
 
 
 const formSchema = z.object({
-    name: z.string().min(2, {message: "Name is required"}),
-    subject: z.string().min(2, {message: "Subject is required"}),
-    topic: z.string().min(2, {message: "Topic is required"}),
-    voice: z.string().min(2, {message: "Voice is required"}),
-    style: z.string().min(2, {message: "Style is required"}),
-    duration: z.number().min(1, {message: "Duration is required"}),
+    name: z.string().min(2, { message: "Name is required" }),
+    subject: z.string().min(2, { message: "Subject is required" }),
+    topic: z.string().min(2, { message: "Topic is required" }),
+    voice: z.string().min(2, { message: "Voice is required" }),
+    style: z.string().min(2, { message: "Style is required" }),
+    duration: z.number().min(1, { message: "Duration is required" }),
 })
 
 const CompanionForm = () => {
@@ -85,7 +85,7 @@ const CompanionForm = () => {
                             <FormLabel>Subject</FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                                 <FormControl>
-                                    <SelectTrigger className="input">
+                                    <SelectTrigger className="input capitalize">
                                         <SelectValue placeholder="Select a subject" />
                                     </SelectTrigger>
                                 </FormControl>
@@ -106,7 +106,7 @@ const CompanionForm = () => {
                         <FormItem>
                             <FormLabel>What should the companion help with</FormLabel>
                             <FormControl>
-                                <Textarea placeholder="Eg: Derivatives and Integrals" className="input" {...field}/>
+                                <Textarea placeholder="Eg: Derivatives and Integrals" className="input" {...field} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
@@ -156,12 +156,12 @@ const CompanionForm = () => {
                 />
                 <FormField
                     control={form.control}
-                    name="name"
+                    name="duration"
                     render={({ field }) => (
                         <FormItem>
                             <FormLabel>Estimated session duration in minutes</FormLabel>
                             <FormControl>
-                                <Input type="number" placeholder="10" className="input" {...field} />
+                                <Input type="number" placeholder="10" className="input" {...field} onChange={e => field.onChange(e.target.value === '' ? '' : Number(e.target.value))} />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
