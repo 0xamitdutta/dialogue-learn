@@ -22,7 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${bricolage.variable} antialiased`}>
-        <ClerkProvider>
+        <ClerkProvider appearance={{
+          variables: {
+            colorPrimary: '#FF5933'
+          }
+        }}>
           <Navbar />
           {children}
         </ClerkProvider>
