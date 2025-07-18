@@ -11,8 +11,6 @@ const Companion = async  ({params}: Params) => {
   const {name, subject, topic, duration} = companion;
   const user = await currentUser();
 
-  console.log('USER', user);
-
   if(!user)
       redirect('/sign-in');
   if(!companion)

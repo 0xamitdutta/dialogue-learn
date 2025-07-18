@@ -8,7 +8,6 @@ import { getSubjectColor } from '@/lib/utils'
 const Page = async () => {
   const companions = await getAllCompanions({ limit: 3 });
   const recentSessions = await getRecentSessions(10);
-  console.log('Recent Sessions', recentSessions);
 
   return (
     <main>
