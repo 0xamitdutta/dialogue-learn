@@ -9,7 +9,6 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from '@/components/ui/accordion';
-import CompanionCard from '@/components/CompanionCard';
 import { redirect } from 'next/navigation';
 
 const Profile = async () => {

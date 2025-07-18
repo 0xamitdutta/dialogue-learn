@@ -1,4 +1,3 @@
-import { Button } from '@/components/ui/button'
 import CompanionCard from '@/components/CompanionCard'
 import CTA from '@/components/CTA'
 import CompanionsList from '@/components/CompanionsList'
