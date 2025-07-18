@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button'
+export const dynamic = "force-dynamic";
 import CompanionCard from '@/components/CompanionCard'
 import CTA from '@/components/CTA'
 import CompanionsList from '@/components/CompanionsList'
@@ -6,7 +6,7 @@ import { getAllCompanions, getRecentSessions } from '@/lib/actions/companions.ac
 import { getSubjectColor } from '@/lib/utils'
 
 const Page = async () => {
-  const companions = await getAllCompanions({limit: 3});
+  const companions = await getAllCompanions({ limit: 3 });
   const recentSessions = await getRecentSessions(10);
   console.log('Recent Sessions', recentSessions);
 
@@ -19,7 +19,7 @@ const Page = async () => {
           companions.map((companion) => (
             <CompanionCard key={companion.id} {...companion} color={getSubjectColor(companion.subject)} />
           ))
-        } 
+        }
       </section>
 
       <section className='home-section'>
